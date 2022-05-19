@@ -1,0 +1,16 @@
+<h1>Edit Cat</h1>
+
+<form action="/cats/<%= index %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <p>
+    <label for="species">Species</label>
+    <br>
+    <input type="text" id="name" name="name" value="<%= cat.name %>">
+    <input type="text" id="number" name="number" value="<%= cat.number %>">
+    <input type="text" id="description" name="description" value="<%= cat.description %>">
+
+  </p>
+
+  <input type="submit" value="Update Animal">
+</form>

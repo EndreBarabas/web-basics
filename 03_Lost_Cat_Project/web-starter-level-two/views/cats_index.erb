@@ -12,11 +12,15 @@
             <p><%= cat.number %></p>
             <p><%= cat.description %></p>
         </p>
-        <form action="/cats/<%= index + 1 %>" method="post">
+        <form action="/cats/<%= index %>" method="POST">
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" id="<%= cat.name %>_delete_btn" value="Delete">
         </form>
         <br>
+        <form action="/cats/<%= index %>/edit" method="PATCH">  
+            <input type="hidden" name="_method" value="UPDATE">
+            <input type="submit" id="<%= cat.name %>_update_btn" value="Update">
+        </form>
     <% end %>
 <% end %>
 

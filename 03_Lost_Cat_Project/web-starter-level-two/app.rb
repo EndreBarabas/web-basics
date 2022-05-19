@@ -47,10 +47,40 @@ class WebApplicationServer < Sinatra::Base
     redirect "/cats"
   end
 
-  delete "/cats" do
-    cat_container.delete(params[:id])
+  delete "/cats/:index" do
+    cat_container.remove(params[:index].to_i)
     redirect "/cats"
   end
+
+  #I created this
+  # get "/cats/:index/edit" do
+  #   erb :cats_edit, local: {
+  #                     entry: cat.get(params[:index].to_i),
+  #                   }
+  # end
+
+  get "/cats/:index/edit" do
+    cat_index = params[:index].to_i
+    erb :cats_edit, locals: {
+                      index: cat_index + 1,
+                      cat: cat_container.get_cat(cat_index),
+                    }
+  end
+
+  patch "/cats/:index/edit" do #this is going to be a patch
+    cat_index = params[:index].to_i
+    erb :cats_edit, locals: {
+                      index: cat_index + 1,
+                      cat: cat_container.get_cat(cat_index),
+                    }
+  end
+
+  # I created this
+  # patch "/cats/:index/edit" do
+  #   erb :cats_edit, local: {
+  #                     entry: cat.get(params[:index].to_i + 1),
+  #                   }
+  # end
 
   # This is an example of setting up a new instance using the global data store.
   def cat_container
