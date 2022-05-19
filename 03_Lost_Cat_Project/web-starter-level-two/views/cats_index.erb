@@ -1,0 +1,23 @@
+<h1>LOST CAT</h1>
+
+<% if cats.empty? %>
+
+    <p>No meow missing, happy day for everyone.</p>
+
+<% else %>
+
+    <% cats.each_with_index do |cat, index| %>
+        <p>
+            <h3><%= cat.name %></h3>
+            <p><%= cat.number %></p>
+            <p><%= cat.description %></p>
+        </p>
+        <form action="/cats/<%= index + 1 %>" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" id="<%= cat.name %>_delete_btn" value="Delete">
+        </form>
+        <br>
+    <% end %>
+<% end %>
+
+<a href="cats/new">Missing Meow</a>
